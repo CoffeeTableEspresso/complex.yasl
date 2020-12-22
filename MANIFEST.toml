@@ -1,6 +1,8 @@
 name = "complex"
 authors = [ "CoffeeTableEspresso <coffeetableespresso@gmail.com>" ]
 version = "v0.1.0"
-build = [ "complex.c" ]
+
+[build]
+sources = [ "complex.c" ]
 
 [deps]
