@@ -34,7 +34,7 @@ static void YASL_complex_new(struct YASL_State *S) {
     yasl_float real = YASLX_checkfloat(S, "complex", 0);
     yasl_float imag = YASLX_checkfloat(S, "complex", 1);
 
-    YASL_pushcomplex(S, real + image * I);
+    YASL_pushcomplex(S, real + imag * I);
 }
 
 void YASL_complex_tostr(struct YASL_State *S) {
