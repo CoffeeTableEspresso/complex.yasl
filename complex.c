@@ -31,8 +31,8 @@ static void YASL_pushcomplex(struct YASL_State *S, complex yasl_float c) {
 }
 
 static void YASL_complex_new(struct YASL_State *S) {
-    yasl_float real = YASLX_checkfloat(S, "complex", 0);
     yasl_float imag = YASLX_checkfloat(S, "complex", 1);
+    yasl_float real = YASLX_checkfloat(S, "complex", 0);
 
     YASL_pushcomplex(S, real + imag * I);
 }
@@ -44,7 +44,7 @@ void YASL_complex_tostr(struct YASL_State *S) {
 
     size_t len = snprintf(NULL, 0, "%f + %fi", real, imag);
     char *buffer = malloc(len + 1);
-    snprintf(buffer, len, "%f + %fi", real, imag);
+    snprintf(buffer, len + 1, "%f + %fi", real, imag);
     buffer[len] = '\0';
 
     YASL_pushszstring(S, buffer);
