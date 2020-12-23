@@ -79,27 +79,13 @@ void YASL_complex___div(struct YASL_State *S) {
     YASL_pushcomplex(S, a / b);
 }
 
-/*
 void YASL_complex___eq(struct YASL_State *S) {
+    complex yasl_float b = *YASLX_checkcomplex(S, "complex.__add", 1);
+    complex yasl_float a = *YASLX_checkcomplex(S, "complex.__add", 0);
 
+    YASL_pushbool(S, a == b);
 }
 
-void YASL_complex___gt(struct YASL_State *S) {
-
-}
-
-void YASL_complex___ge(struct YASL_State *S) {
-
-}
-
-void YASL_complex___lt(struct YASL_State *S) {
-
-}
-
-void YASL_complex___le(struct YASL_State *S) {
-
-}
-*/
 
 void YASL_load_dyn_lib(struct YASL_State *S) {
     YASL_pushtable(S);
@@ -130,32 +116,10 @@ void YASL_load_dyn_lib(struct YASL_State *S) {
     YASL_pushcfunction(S, YASL_complex___div, 2);
     YASL_tableset(S);
 
-/*
     YASL_loadmt(S, COMPLEX_PRE);
     YASL_pushlitszstring(S, "__eq");
     YASL_pushcfunction(S, YASL_complex___eq, 2);
     YASL_tableset(S);
 
-    YASL_loadmt(S, COMPLEX_PRE);
-    YASL_pushlitszstring(S, "__gt");
-    YASL_pushcfunction(S, YASL_complex___gt, 2);
-    YASL_tableset(S);
-
-    YASL_loadmt(S, COMPLEX_PRE);
-    YASL_pushlitszstring(S, "__ge");
-    YASL_pushcfunction(S, YASL_complex___ge, 2);
-    YASL_tableset(S);
-
-    YASL_loadmt(S, COMPLEX_PRE);
-    YASL_pushlitszstring(S, "__lt");
-    YASL_pushcfunction(S, YASL_complex___lt, 2);
-    YASL_tableset(S);
-
-    YASL_loadmt(S, COMPLEX_PRE);
-    YASL_pushlitszstring(S, "__le");
-    YASL_pushcfunction(S, YASL_complex___le, 2);
-    YASL_tableset(S);
-
-    */
     YASL_pushcfunction(S, YASL_complex_new, 2);
 }
