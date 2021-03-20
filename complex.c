@@ -31,8 +31,8 @@ static void YASL_pushcomplex(struct YASL_State *S, complex yasl_float c) {
 }
 
 static int YASL_complex_new(struct YASL_State *S) {
-    yasl_float imag = YASLX_checkfloat(S, "complex", 1);
-    yasl_float real = YASLX_checkfloat(S, "complex", 0);
+    yasl_float imag = YASLX_checknfloat(S, "complex", 1);
+    yasl_float real = YASLX_checknfloat(S, "complex", 0);
 
     YASL_pushcomplex(S, real + imag * I);
 
@@ -88,7 +88,7 @@ static int YASL_complex___div(struct YASL_State *S) {
 
     if (b == 0) {
         YASL_print_err(S, "Cannot divide by 0");
-        YASL_throw_err(S, YASL_DIVISION_BY_ZERO_ERROR);
+        YASL_throw_err(S, YASL_DIVIDE_BY_ZERO_ERROR);
     }
 
     YASL_pushcomplex(S, a / b);
