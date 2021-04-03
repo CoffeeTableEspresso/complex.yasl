@@ -1,4 +1,4 @@
-const bigint = __require_c__('complex')
+const complex = __require_c__('complex')
 
 const k = complex(1, 2)
 const n = complex(3, -1)
