@@ -1,0 +1,17 @@
+const bigint = __require_c__('complex')
+
+const k = complex(1, 2)
+const n = complex(3, -1)
+
+echo k
+echo n
+
+echo -n
+echo +n
+
+echo n * k
+echo n // k
+echo n % k
+
+echo n + k
+echo n - k
