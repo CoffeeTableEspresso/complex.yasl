@@ -10,6 +10,7 @@ echo n
 # echo +n
 
 echo n * k
+echo n / k
 # echo n // k
 # echo n % k
 
