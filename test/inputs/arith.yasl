@@ -1,4 +1,4 @@
-const complex = __require_c__('complex')
+const complex = require('complex')
 
 const k = complex(1.1, 2.5)
 const n = complex(3.9, -1.0)
@@ -6,8 +6,8 @@ const n = complex(3.9, -1.0)
 echo k
 echo n
 
-# echo -n
-# echo +n
+echo -n
+echo +n
 
 echo n * k
 echo n / k
