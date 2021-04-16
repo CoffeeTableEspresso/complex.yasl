@@ -1,0 +1,15 @@
+
+type complex {
+    tostr(self) -> str
+
+    complex == complex -> bool
+    complex != complex -> bool
+    complex + complex -> complex
+    complex - complex -> complex
+    complex * complex -> complex
+    complex / complex -> complex
+    +complex -> complex
+    -complex -> complex
+}
+
+export complex(float, float) -> complex
