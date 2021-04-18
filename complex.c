@@ -96,34 +96,48 @@ static int YASL_complex___mul(struct YASL_State *S) {
 }
 
 static int YASL_complex___div(struct YASL_State *S) {
-    complex yasl_float b = *YASLX_checkcomplex(S, "complex.__add", 1);
-    complex yasl_float a = *YASLX_checkcomplex(S, "complex.__add", 0);
+	complex yasl_float b = *YASLX_checkcomplex(S, "complex.__add", 1);
+	complex yasl_float a = *YASLX_checkcomplex(S, "complex.__add", 0);
 
-    if (b == 0) {
-        YASL_print_err(S, "Cannot divide by 0");
-        YASL_throw_err(S, YASL_DIVIDE_BY_ZERO_ERROR);
-    }
+	if (b == 0) {
+		YASL_print_err(S, "Cannot divide by 0");
+		YASL_throw_err(S, YASL_DIVIDE_BY_ZERO_ERROR);
+	}
 
-    YASL_pushcomplex(S, a / b);
+	YASL_pushcomplex(S, a / b);
 
-    return 1;
+	return 1;
 }
 
 static int YASL_complex___eq(struct YASL_State *S) {
-    complex yasl_float b = *YASLX_checkcomplex(S, "complex.__add", 1);
-    complex yasl_float a = *YASLX_checkcomplex(S, "complex.__add", 0);
+	complex yasl_float b = *YASLX_checkcomplex(S, "complex.__add", 1);
+	complex yasl_float a = *YASLX_checkcomplex(S, "complex.__add", 0);
 
-    YASL_pushbool(S, a == b);
+	YASL_pushbool(S, a == b);
 
-    return 1;
+	return 1;
 }
 
+static int YASL_complex_re(struct YASL_State *S) {
+	complex yasl_float a = *YASLX_checkcomplex(S, "complex.re", 0);
+
+	YASL_pushfloat(S, creal(a));
+	return 1;
+}
+
+static int YASL_complex_im(struct YASL_State *S) {
+	complex yasl_float a = *YASLX_checkcomplex(S, "complex.im", 0);
+
+	YASL_pushfloat(S, cimag(a));
+	return 1;
+}
 
 void YASL_load_dyn_lib(struct YASL_State *S) {
 	YASL_pushtable(S);
 	YASL_registermt(S, COMPLEX_PRE);
 
 	YASL_loadmt(S, COMPLEX_PRE);
+
 	YASL_pushlit(S, "tostr");
 	YASL_pushcfunction(S, YASL_complex_tostr, 1);
 	YASL_tableset(S);
@@ -136,7 +150,6 @@ void YASL_load_dyn_lib(struct YASL_State *S) {
 	YASL_pushcfunction(S, YASL_complex___neg, 1);
 	YASL_tableset(S);
 
-	YASL_loadmt(S, COMPLEX_PRE);
 	YASL_pushlit(S, "__add");
 	YASL_pushcfunction(S, YASL_complex___add, 2);
 	YASL_tableset(S);
@@ -145,19 +158,24 @@ void YASL_load_dyn_lib(struct YASL_State *S) {
 	YASL_pushcfunction(S, YASL_complex___sub, 2);
 	YASL_tableset(S);
 
-	YASL_loadmt(S, COMPLEX_PRE);
 	YASL_pushlit(S, "__mul");
 	YASL_pushcfunction(S, YASL_complex___mul, 2);
 	YASL_tableset(S);
 
-	YASL_loadmt(S, COMPLEX_PRE);
 	YASL_pushlit(S, "__div");
 	YASL_pushcfunction(S, YASL_complex___div, 2);
 	YASL_tableset(S);
 
-	YASL_loadmt(S, COMPLEX_PRE);
 	YASL_pushlit(S, "__eq");
 	YASL_pushcfunction(S, YASL_complex___eq, 2);
+	YASL_tableset(S);
+
+	YASL_pushlit(S, "re");
+	YASL_pushcfunction(S, YASL_complex_re, 1);
+	YASL_tableset(S);
+
+	YASL_pushlit(S, "im");
+	YASL_pushcfunction(S, YASL_complex_im, 1);
 	YASL_tableset(S);
 
 	YASL_pushtable(S);
