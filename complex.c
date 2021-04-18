@@ -160,5 +160,9 @@ void YASL_load_dyn_lib(struct YASL_State *S) {
 	YASL_pushcfunction(S, YASL_complex___eq, 2);
 	YASL_tableset(S);
 
+	YASL_pushtable(S);
+
+	YASL_pushlit(S, "__call");
 	YASL_pushcfunction(S, YASL_complex_new, 2);
+	YASL_tableset(S);
 }
