@@ -132,7 +132,7 @@ static int YASL_complex_im(struct YASL_State *S) {
 	return 1;
 }
 
-void YASL_load_dyn_lib(struct YASL_State *S) {
+int YASL_load_dyn_lib(struct YASL_State *S) {
 	YASL_pushtable(S);
 	YASL_registermt(S, COMPLEX_PRE);
 
@@ -180,7 +180,12 @@ void YASL_load_dyn_lib(struct YASL_State *S) {
 
 	YASL_pushtable(S);
 
+	YASL_pushtable(S);
 	YASL_pushlit(S, "__call");
 	YASL_pushcfunction(S, YASL_complex_new, 2);
 	YASL_tableset(S);
+
+	YASL_setmt(S);
+
+	return 1;
 }
