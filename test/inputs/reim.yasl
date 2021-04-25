@@ -3,5 +3,5 @@ const complex = require('complex')
 
 const v = complex(2.4, 5.4)
 
-echo v.re()
-echo v.im()
+echo v->re()
+echo v->im()
