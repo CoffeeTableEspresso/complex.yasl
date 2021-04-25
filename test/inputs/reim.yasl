@@ -1,10 +1,5 @@
 
-const complex = __require_c__('./cmake-build-debug/libcomplex.so')
-
-echo complex
-for i <- mt.get(complex) {
-    echo i
-}
+const complex = require('complex')
 
 const v = complex(2.4, 5.4)
 
