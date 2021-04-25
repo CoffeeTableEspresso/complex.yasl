@@ -178,11 +178,11 @@ int YASL_load_dyn_lib(struct YASL_State *S) {
 	YASL_pushcfunction(S, YASL_complex_im, 1);
 	YASL_tableset(S);
 
+	YASL_pushtable(S);
+
 	YASL_pushlit(S, "__VERSION__");
 	YASL_pushlit(S, "v0.1.0");
 	YASL_tableset(S);
-
-	YASL_pushtable(S);
 
 	YASL_pushtable(S);
 	YASL_pushlit(S, "__call");
