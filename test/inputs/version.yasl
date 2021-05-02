@@ -1,0 +1,3 @@
+const complex = require('complex')
+
+echo complex.__VERSION__
