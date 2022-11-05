@@ -23,9 +23,14 @@ static complex yasl_float *allocate_complex(complex yasl_float c) {
     *ptr = c;
     return ptr;
 }
+static void free_complex(struct YASL_State *S, complex *n) {
+    (void) S;
+    free(n);
+}
+
 
 static void YASL_pushcomplex(struct YASL_State *S, complex yasl_float c) {
-    YASL_pushuserdata(S, allocate_complex(c), COMPLEX_NAME, free);
+    YASL_pushuserdata(S, allocate_complex(c), COMPLEX_NAME, (void(*)(struct YASL_State *, void *))free_complex);
     YASL_loadmt(S, COMPLEX_PRE);
     YASL_setmt(S);
 }
