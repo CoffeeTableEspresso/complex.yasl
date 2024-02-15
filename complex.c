@@ -141,52 +141,27 @@ int YASL_load_dyn_lib(struct YASL_State *S) {
 	YASL_pushtable(S);
 	YASL_registermt(S, COMPLEX_PRE);
 
+	YASL_function functions[] = {
+		{ "tostr", YASL_complex_tostr, 1 },
+		{ "__pos", YASL_complex___pos, 1 },
+		{ "__neg", YASL_complex___neg, 1 },
+		{ "__add", YASL_complex___add, 2 },
+		{ "__sub", YASL_complex___sub, 2 },
+		{ "__mul", YASL_complex___mul, 2 },
+		{ "__div", YASL_complex___div, 2 },
+		{ "__eq", YASL_complex___eq, 2 },
+		{ "re", YASL_complex_re, 1 },
+		{ "im", YASL_complex_im, 1 },
+		{ NULL, NULL, 0 }
+	};
+
 	YASL_loadmt(S, COMPLEX_PRE);
-
-	YASL_pushlit(S, "tostr");
-	YASL_pushcfunction(S, YASL_complex_tostr, 1);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "__pos");
-	YASL_pushcfunction(S, YASL_complex___pos, 1);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "__neg");
-	YASL_pushcfunction(S, YASL_complex___neg, 1);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "__add");
-	YASL_pushcfunction(S, YASL_complex___add, 2);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "__sub");
-	YASL_pushcfunction(S, YASL_complex___sub, 2);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "__mul");
-	YASL_pushcfunction(S, YASL_complex___mul, 2);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "__div");
-	YASL_pushcfunction(S, YASL_complex___div, 2);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "__eq");
-	YASL_pushcfunction(S, YASL_complex___eq, 2);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "re");
-	YASL_pushcfunction(S, YASL_complex_re, 1);
-	YASL_tableset(S);
-
-	YASL_pushlit(S, "im");
-	YASL_pushcfunction(S, YASL_complex_im, 1);
-	YASL_tableset(S);
+	YASL_tablesetfunctions(S, functions);
 
 	YASL_pushtable(S);
 
 	YASL_pushlit(S, "__VERSION__");
-	YASL_pushlit(S, "v0.1.0");
+	YASL_pushlit(S, "v0.1.1");
 	YASL_tableset(S);
 
 	YASL_pushtable(S);
